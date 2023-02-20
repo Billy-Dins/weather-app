@@ -4,10 +4,9 @@
 }
 
 .main-content {
+    background-color: rgb(41, 158, 173);
     width: 100vw;
     height: 100vh;
-    background-color: rgb(41, 158, 173);
-
 }
 
 .top-left, .top-right, .bottom {
@@ -15,13 +14,53 @@
 }
 
 .top-left {
+    padding: 25px;
     top: 0px;
     left: 0px;
 }
+.city-title {
+    font-size: 1.3rem;
+    font-family: 'Lobster', cursive;
+}
+.weather-description {
+    font-size: .7rem;
+    font-family: 'Aboreto', cursive;
+}
+.current-temperature {
+    font-size: 2rem;
+    font-family: 'Aboreto', cursive;
+}
+.change-units {
+    
+    font-size: .6rem;
+    font-family: 'Aboreto', cursive;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.cityInput {
+    padding: 0px 0px 3px 7px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+.cityInput:focus {
+    outline: none;
+    color: pink;
+}
+.getWeatherBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 .top-right {
+    padding: 25px;
+    text-align: end;
     top: 0px;
     right: 0px;
 }
 .bottom {
+    position: absolute;
     bottom: 0px;
+    padding: 25px;
 }

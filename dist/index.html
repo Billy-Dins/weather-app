@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Lobster&family=Oswald&display=swap" rel="stylesheet">
     <script src="main.js" defer ></script>
 </head>
 <body>
@@ -14,12 +17,12 @@
             <div class="weather-description">cloudy</div>
             <div class="todays-date">Monday, 20th Feb '23</div>
             <div class="todays-time">8:08 pm</div>
-            <div class="current-temperate">6 degrees</div>
-            <div class="change-units">Display F</div>
+            <div class="current-temperature">6 degrees</div>
+            <button class="change-units">(Standard)</button>
             <div class="weather-icon"></div>
             <form action="">
                     <input class="cityInput" type="text" placeholder="input a city...">
-                    <button class="getWeatherBtn">get weather</button>
+                    <button class="getWeatherBtn">Q</button>
             </form>
         </div>
         <div class="top-right">
@@ -27,11 +30,6 @@
                 <div class="feels-like-title">Feels Like</div>
                 <div class="feels-like-icon"></div>
                 <div class="feels-like-temp">25</div>
-            </div>
-            <div class="chance-of-rain">
-                <div class="chance-of-title">Chance of Rain</div>
-                <div class="chance-of-icon"></div>
-                <div class="chance-of-percent">100%</div>
             </div>
             <div class="sunrise">
                 <div class="sunrise-title">Sunrise</div>
@@ -47,11 +45,11 @@
         </div>
         <div class="bottom">
             <div class="five-day-forcast">
-                <div>Mon</div>
-                <div>Tues</div>
-                <div>Wed</div>
-                <div>Thurs</div>
-                <div>Fri</div>
+                <span>mon</span>
+                <span>tues</span>
+                <span>wed</span>
+                <span>thurs</span>
+                <span>fri</span>
             </div>
             <div class="hourly-forecast"></div>
         </div>
