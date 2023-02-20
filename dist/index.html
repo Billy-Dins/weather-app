@@ -8,13 +8,53 @@
     <script src="main.js" defer ></script>
 </head>
 <body>
-    <form action="">
-        <fieldset><legend>city weather</legend>
-            <input class="cityInput" type="text" placeholder="input a city...">
-            <button class="getWeatherBtn">get weather</button>
-        </fieldset>
-    </form>
-    <div class="content">
+    <div class="main-content">
+        <div class="top-left">
+            <div class="city-title">Tenerife</div>
+            <div class="weather-description">cloudy</div>
+            <div class="todays-date">Monday, 20th Feb '23</div>
+            <div class="todays-time">8:08 pm</div>
+            <div class="current-temperate">6 degrees</div>
+            <div class="change-units">Display F</div>
+            <div class="weather-icon"></div>
+            <form action="">
+                    <input class="cityInput" type="text" placeholder="input a city...">
+                    <button class="getWeatherBtn">get weather</button>
+            </form>
+        </div>
+        <div class="top-right">
+            <div class="feels-like">
+                <div class="feels-like-title">Feels Like</div>
+                <div class="feels-like-icon"></div>
+                <div class="feels-like-temp">25</div>
+            </div>
+            <div class="chance-of-rain">
+                <div class="chance-of-title">Chance of Rain</div>
+                <div class="chance-of-icon"></div>
+                <div class="chance-of-percent">100%</div>
+            </div>
+            <div class="sunrise">
+                <div class="sunrise-title">Sunrise</div>
+                <div class="sunrise-icon"></div>
+                <div class="sunrise-time">06:21</div>
+            </div>
+            <div class="sunset">
+                <div class="sunset-title">Sunset</div>
+                <div class="sunset-icon"></div>
+                <div class="sunset-time">20:21
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="five-day-forcast">
+                <div>Mon</div>
+                <div>Tues</div>
+                <div>Wed</div>
+                <div>Thurs</div>
+                <div>Fri</div>
+            </div>
+            <div class="hourly-forecast"></div>
+        </div>
     </div>
 </body>
 </html>

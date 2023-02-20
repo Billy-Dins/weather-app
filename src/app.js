@@ -1,5 +1,4 @@
 const content = document.querySelector('.content')
-const weatherBtn = document.querySelector('.getWeatherBtn'); 
 
 let createDiv = (newContent) => {
     let newDiv = document.createElement('div');
@@ -26,18 +25,14 @@ let getCityWeather = async () => {
         console.log(cityWeather)
         displayWeatherData(cityWeather);
     })
+    .then(getCitySun())
 };
 
 let getCitySun = async () => {
     let citySun = await fetch(`https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&timezone=EST&date=today`)
     citySun.json().then((citySun) => {
-        console.log(citySun.results.sunrise)
+        createDiv(`sunrise is ${citySun.results.sunrise}`)
     })
 } 
-weatherBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    getCityWeather();
-})
 
-getCityWeather();
-getCitySun();
+export default getCityWeather;
