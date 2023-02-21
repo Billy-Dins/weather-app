@@ -21,7 +21,7 @@
             <button class="change-units">(Standard)</button>
             <div class="weather-icon"></div>
             <form action="">
-                    <input class="cityInput" type="text" placeholder="input a city...">
+                    <input class="city-input" type="text" placeholder="input a city...">
                     <button class="getWeatherBtn">Q</button>
             </form>
         </div>
@@ -43,13 +43,23 @@
                 </div>
             </div>
         </div>
-        <div class="bottom">
+        <div class="forecast">
             <div class="five-day-forcast">
-                <span>mon</span>
-                <span>tues</span>
-                <span>wed</span>
-                <span>thurs</span>
-                <span>fri</span>
+                <span class="day-one">
+                    <div class="day-one-of-week"></div>
+                    <div class="day-one-high"></div>
+                    <div class="day-one-low"></div>
+                    <div class="day-one-icon"></div>
+                </span>
+                <span class="day-two">
+                    <div class="day-two-of-week"></div>
+                    <div class="day-two-high"></div>
+                    <div class="day-two-low"></div>
+                    <div class="day-two-icon"></div>
+                </span>
+                <span class="day-three">wed</span>
+                <span class="day-four">thurs</span>
+                <span class="day-five">fri</span>
             </div>
             <div class="hourly-forecast"></div>
         </div>

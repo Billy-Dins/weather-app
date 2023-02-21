@@ -31,14 +31,13 @@
     font-family: 'Aboreto', cursive;
 }
 .change-units {
-    
     font-size: .6rem;
     font-family: 'Aboreto', cursive;
     background: none;
     border: none;
     cursor: pointer;
 }
-.cityInput {
+.city-input {
     padding: 0px 0px 3px 7px;
     background: none;
     border: none;
@@ -59,7 +58,7 @@
     top: 0px;
     right: 0px;
 }
-.bottom {
+.forecast {
     position: absolute;
     bottom: 0px;
     padding: 25px;

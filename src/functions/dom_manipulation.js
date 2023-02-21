@@ -1,3 +1,6 @@
+import { fetchCityWeather } from "./api_manipulation";
+import { formatDate } from "./format";
+
 const cityTitle = document.querySelector('.city-title');
 const weatherDescription = document.querySelector('.weather-description');
 const todaysDate = document.querySelector('.todays-date');
@@ -5,29 +8,47 @@ const todaysTime = document.querySelector('.todays-time');
 const currentTemp = document.querySelector('.current-temperature');
 const weatherIcon = document.querySelector('.weather-icon');
 
-const feelsLike = document.querySelector('.feels-like')
-const chanceOfRain = document.querySelector('.feels-like-temp')
+const feelsLike = document.querySelector('.feels-like-temp')
 const sunriseTime = document.querySelector('.sunrise-time');
 const sunsetTime = document.querySelector('.sunset-time')
 
+const dayOneHigh = document.querySelector('.day-one-high')
+const dayOneLow = document.querySelector('.day-one-low');
+const dayTwoHigh = document.querySelector('.day-two-high')
+const dayTwoLow = document.querySelector('.day-two-low')
+const dayThree = document.querySelector('.day-three')
+const dayFour = document.querySelector('.day-four')
+const dayFive = document.querySelector('.day-five')
+
 let displayWeatherData = (cityWeather) => {
     cityTitle.textContent = cityWeather.name;
-    currentTemp.textContent = ` ${cityWeather.main.temp} °C`
+    currentTemp.textContent = ` ${Math.round(cityWeather.main.temp)} °C`
     weatherDescription.textContent = cityWeather.weather[0].description
-    feelsLike.textContent = cityWeather.main.feels_like;
+    feelsLike.textContent = Math.round(cityWeather.main.feels_like);
+    dayOneHigh.textContent = Math.round(cityWeather.main.temp_max);
 };
 
 let lon = '-16.2546'
 let lat = '28.4682'
 
-let getFiveDayForecast = async () => {
-    let forecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=05f38c988f47ba62b87ed1de9b4136f4&units=metric`);
-    forecast.json().then((forecast) => {
-        console.log(forecast.list)
-    })
+let setDate = () => {
+    todaysDate.textContent = formatDate('day')
+    todaysTime.textContent = formatDate('time')
 }
 
-let getCityWeather = async () => {
+let getCityWeather = async (cityName) => {
+    let url = fetchCityWeather(cityName);
+    let cityWeather = await fetch(url)
+    cityWeather.json().then((cityWeather) => {
+        displayWeatherData(cityWeather);
+        lon = cityWeather.coord.lon
+        lat = cityWeather.coord.lat
+    })
+    .then (getCitySun());
+}
+
+/* /let getCityWeather = async () => {
+    console.log(Date)
     let cityInput = document.querySelector('.cityInput')
     let cityName = ''
     if (cityInput.value === '') {
@@ -42,9 +63,9 @@ let getCityWeather = async () => {
         lon = cityWeather.coord.lon
         lat = cityWeather.coord.lat
     })
-    .then(getCitySun())
-    .then(getFiveDayForecast())
-};
+    await getCitySun()
+    await getFiveDayForecast()
+}; */
 
 let getCitySun = async () => {
     let citySun = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=EST&date=today`)
@@ -54,4 +75,4 @@ let getCitySun = async () => {
     })
 }
 
-export default getCityWeather;
+export { getCityWeather, setDate }
