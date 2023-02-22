@@ -59,7 +59,19 @@
     right: 0px;
 }
 .forecast {
-    position: absolute;
-    bottom: 0px;
-    padding: 25px;
+    background-color: red;
+    position: fixed;
+    width: 100%;
+    bottom: 50px;
+}
+.five-day-forecast {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.forecast-day {
+    display: inline-block;
+    width: 15vw;
+    height: 15vw;
+    background-color: white;
 }
