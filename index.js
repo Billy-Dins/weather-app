@@ -1,13 +1,15 @@
-import { onLoad } from './src/functions/dom_manipulation';
+import { onLoad, fetchWeatherData, displayWeatherData } from './src/functions/dom_manipulation';
+import { CityWeatherUrl } from './src/functions/api_manipulation';
 
 import styles from './src/styles.css'
 
 const weatherBtn = document.querySelector('.getWeatherBtn');
 const cityInput = document.querySelector('.city-input')
 
-weatherBtn.addEventListener('click', (event) => {
+weatherBtn.addEventListener('click', async (event) => {
     event.preventDefault();
-    getCityWeather(cityInput.value)
+    let data = await fetchWeatherData(cityInput.value);
+    displayWeatherData(data)
 })
 
 onLoad()

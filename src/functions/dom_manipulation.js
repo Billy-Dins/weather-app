@@ -1,4 +1,4 @@
-import { fetchCityWeather } from "./api_manipulation";
+import { CityWeatherUrl } from "./api_manipulation";
 import { formatDate } from "./format";
 
 const cityTitle = document.querySelector('.city-title');
@@ -22,19 +22,30 @@ const dayFive = document.querySelector('.day-five')
 
 let onLoad = async () => {
     let cityCoords = await getCityCoords('santa cruz de tenerife');
-    getCitySun(cityCoords.lat, cityCoords.lon)
-    displayWeatherData('santa cruz de tenerife')
+    let sunData = await getCitySun(cityCoords.lat, cityCoords.lon);
+    displaySunData(sunData)
+    let cityWeatherData = await fetchWeatherData('santa cruz de tenerife');
+    displayWeatherData(cityWeatherData)
+    setDate();
 }
 
-let displayWeatherData = async (cityName) => {
-    let url = fetchCityWeather(cityName)
+let displaySunData = (data) => {
+    sunriseTime.textContent = data.sunrise
+    sunsetTime.textContent = data.sunset
+}
+
+let displayWeatherData = (data) => {
+    cityTitle.textContent = data.name;
+    currentTemp.textContent = ` ${Math.round(data.main.temp)} °C`
+    weatherDescription.textContent = data.weather[0].description
+    feelsLike.textContent = `${Math.round(data.main.feels_like)} °C`;
+    dayOneHigh.textContent = Math.round(data.main.temp_max);
+}
+
+let fetchWeatherData = async (cityName) => {
+    let url = CityWeatherUrl(cityName)
     let response = await fetch(url)
-    let cityWeather = await response.json()
-    cityTitle.textContent = cityWeather.name;
-    currentTemp.textContent = ` ${Math.round(cityWeather.main.temp)} °C`
-    weatherDescription.textContent = cityWeather.weather[0].description
-    feelsLike.textContent = Math.round(cityWeather.main.feels_like);
-    dayOneHigh.textContent = Math.round(cityWeather.main.temp_max);
+    return await response.json()
 };
 
 let setDate = () => {
@@ -43,7 +54,7 @@ let setDate = () => {
 };
 
 let getCityCoords = async (cityName) => {
-    let url = fetchCityWeather(cityName);
+    let url = CityWeatherUrl(cityName);
     let response = await fetch(url)
     let cityCoords = await response.json()
     return cityCoords.coord
@@ -52,8 +63,7 @@ let getCityCoords = async (cityName) => {
 let getCitySun = async (lat, lon) => {
     let citySun = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=EST&date=today`)
     const sunData = await citySun.json();
-        sunriseTime.textContent = sunData.results.sunrise
-        sunsetTime.textContent = sunData.results.sunset
+        return sunData.results
 };
 
-export { onLoad }
+export { onLoad, fetchWeatherData, displayWeatherData }

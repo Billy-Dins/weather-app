@@ -20,7 +20,7 @@ let formatDate = (request) => {
         }
         
         if (splitDay[2].slice(-1) === '1') {
-            dateArray.push(`${splitDay[1]}st`)
+            dateArray.push(`${splitDay[2]}st`)
         } else if (splitDay[2].slice(-1) === '2') {
             dateArray.push(`${splitDay[2]}nd`)
         } else if (splitDay[2].slice(-2) === '3') {
