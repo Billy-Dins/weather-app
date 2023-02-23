@@ -33,7 +33,9 @@ let displayForecast = (data) => {
         units = ' °C'
     }
     let forecastParent = fiveDayForecast.children
+    console.log(data)
     for (let i = 0; i < forecastParent.length; i++) {
+        forecastParent[i].children[0].textContent = data.list[((i+1)*8) -4].dt_txt.split(' ')[0]
         forecastParent[i].children[1].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
         forecastParent[i].children[2].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
     }
@@ -100,4 +102,4 @@ let setDate = () => {
     todaysTime.textContent = formatDate('time')
 };
 
-export { currentData, onLoad, fetchWeatherData, setWeatherData, displayWeatherData, reLoad }
+export { currentData, onLoad, fetchWeatherData, setWeatherData, displayWeatherData, reLoad, fetchForecast, displayForecast }

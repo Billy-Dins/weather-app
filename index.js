@@ -1,4 +1,4 @@
-import { currentData, onLoad, fetchWeatherData, displayWeatherData, reLoad, setWeatherData, setForecast } from './src/functions/dom_manipulation';
+import { currentData, onLoad, fetchWeatherData, displayWeatherData, reLoad, setWeatherData, fetchForecast, displayForecast } from './src/functions/dom_manipulation';
 
 import styles from './src/styles.css'
 
@@ -12,6 +12,8 @@ weatherBtn.addEventListener('click', async (event) => {
     setWeatherData(data)
     displayWeatherData()
     cityInput.value = ''
+    let forecastData = await fetchForecast(currentData)
+    displayForecast(forecastData);
 })
 
 unitBtn.addEventListener('click', () => {

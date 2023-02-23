@@ -79,3 +79,12 @@
     border: 1px solid black;
     border-radius: 5px;
 }
+.day-high {
+    font-weight: 600;
+    font-family: 'Aboreto', cursive;
+    font-size: 1.5rem;
+}
+.day-low {
+    font-family: 'Aboreto', cursive;
+    font-size: 1rem;
+}
