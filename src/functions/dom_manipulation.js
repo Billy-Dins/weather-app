@@ -28,7 +28,6 @@ const dayFive = document.querySelector('.day-five')
 let currentData = {units: 'metric'}
 
 let getDayOfWeek = (dayOfWeek) => {
-    console.log(dayOfWeek)
     if (dayOfWeek == '0') {
         return 'Sunday'
     } else if (dayOfWeek == '1') {
@@ -54,7 +53,6 @@ let displayForecast = (data) => {
         units = ' °C'
     }
     let forecastParent = fiveDayForecast.children
-    console.log(getDay(new Date(2012, 1, 29)))
     for (let i = 0; i < forecastParent.length; i++) {
         forecastParent[i].children[0].textContent = getDayOfWeek(getDay(parseISO(data.list[((i+1)*8) -4].dt_txt.split(' ')[0])))
         forecastParent[i].children[1].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;

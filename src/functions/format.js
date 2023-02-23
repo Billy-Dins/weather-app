@@ -9,7 +9,7 @@ let formatDate = (request) => {
             dateArray.push('Tuesday,')
         } else if (splitDay[0] === 'Wed') {
             dateArray.push('Wednesday,')
-        } else if (splitDay[0] === 'Thur') {
+        } else if (splitDay[0] === 'Thu') {
             dateArray.push('Thursday,')
         } else if (splitDay[0] === 'Fri') {
             dateArray.push('Friday,')
@@ -18,12 +18,11 @@ let formatDate = (request) => {
         } else if (splitDay[0] === 'Sun') {
             dateArray.push('Sunday,')
         }
-        
-        if (splitDay[2].slice(-1) === '1') {
+        if (splitDay[2].slice(-1) == '1') {
             dateArray.push(`${splitDay[2]}st`)
-        } else if (splitDay[2].slice(-1) === '2') {
+        } else if (splitDay[2].slice(-1) == '2') {
             dateArray.push(`${splitDay[2]}nd`)
-        } else if (splitDay[2].slice(-2) === '3') {
+        } else if (splitDay[2].slice(-1) == '3') {
             dateArray.push(`${splitDay[2]}rd`)
         } else {
             dateArray.push(`${splitDay[2]}th`)
@@ -37,6 +36,8 @@ let formatDate = (request) => {
         .splice(0,2)
         .join(':')
     }
-}
+};
+
+
 
 export { formatDate }

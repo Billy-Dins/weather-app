@@ -64,7 +64,7 @@
 .forecast {
     position: fixed;
     width: 100%;
-    bottom: 50px;
+    bottom: 10px;
 }
 .five-day-forecast {
     padding: 10px;
@@ -72,12 +72,16 @@
     justify-content: space-around;
 }
 .forecast-day {
+    text-align: center;
     padding: 5px;
     display: inline-block;
     width: 15vw;
     height: 15vw;
-    border: 1px solid black;
     border-radius: 5px;
+}
+.day-of-week {
+    font-size: 1rem;
+    padding-bottom: 10px;
 }
 .day-high {
     font-weight: 600;
@@ -86,5 +90,5 @@
 }
 .day-low {
     font-family: 'Aboreto', cursive;
-    font-size: .7rem;
+    font-size: .6rem;
 }
