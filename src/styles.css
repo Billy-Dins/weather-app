@@ -82,9 +82,9 @@
 .day-high {
     font-weight: 600;
     font-family: 'Aboreto', cursive;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .day-low {
     font-family: 'Aboreto', cursive;
-    font-size: 1rem;
+    font-size: .7rem;
 }

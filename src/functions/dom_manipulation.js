@@ -1,6 +1,8 @@
 import { fetchForecast, CityWeatherUrl, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
 import { formatDate } from "./format";
 
+import { getDay, parseISO, parse } from 'date-fns'
+
 const cityTitle = document.querySelector('.city-title');
 const weatherDescription = document.querySelector('.weather-description');
 const todaysDate = document.querySelector('.todays-date');
@@ -25,6 +27,25 @@ const dayFive = document.querySelector('.day-five')
 
 let currentData = {units: 'metric'}
 
+let getDayOfWeek = (dayOfWeek) => {
+    console.log(dayOfWeek)
+    if (dayOfWeek == '0') {
+        return 'Sunday'
+    } else if (dayOfWeek == '1') {
+        return 'Monday'
+    } else if (dayOfWeek == '2') {
+        return 'Tuesday'
+    } else if (dayOfWeek == '3') {
+        return 'Wednesday'
+    } else if (dayOfWeek == '4') {
+        return 'Thursday'
+    } else if (dayOfWeek == '5') {
+        return 'Friday'
+    } else if (dayOfWeek == '6') {
+        return 'Saturday'
+    }
+}
+
 let displayForecast = (data) => {
     let units
     if (currentData.units === 'imperial') {
@@ -33,9 +54,9 @@ let displayForecast = (data) => {
         units = ' °C'
     }
     let forecastParent = fiveDayForecast.children
-    console.log(data)
+    console.log(getDay(new Date(2012, 1, 29)))
     for (let i = 0; i < forecastParent.length; i++) {
-        forecastParent[i].children[0].textContent = data.list[((i+1)*8) -4].dt_txt.split(' ')[0]
+        forecastParent[i].children[0].textContent = getDayOfWeek(getDay(parseISO(data.list[((i+1)*8) -4].dt_txt.split(' ')[0])))
         forecastParent[i].children[1].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
         forecastParent[i].children[2].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
     }
