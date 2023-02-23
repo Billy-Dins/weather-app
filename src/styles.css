@@ -43,6 +43,9 @@
     border: none;
     border-bottom: 1px solid black;
 }
+.city-input::placeholder {
+    color: orange;
+}
 .cityInput:focus {
     outline: none;
     color: pink;
@@ -59,7 +62,6 @@
     right: 0px;
 }
 .forecast {
-    background-color: red;
     position: fixed;
     width: 100%;
     bottom: 50px;
@@ -70,8 +72,10 @@
     justify-content: space-around;
 }
 .forecast-day {
+    padding: 5px;
     display: inline-block;
     width: 15vw;
     height: 15vw;
-    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
 }

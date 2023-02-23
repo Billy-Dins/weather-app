@@ -1,4 +1,4 @@
-import { CityWeatherUrl } from "./api_manipulation";
+import { fetchForecast, CityWeatherUrl, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
 import { formatDate } from "./format";
 
 const cityTitle = document.querySelector('.city-title');
@@ -13,15 +13,31 @@ const feelsLike = document.querySelector('.feels-like-temp')
 const sunriseTime = document.querySelector('.sunrise-time');
 const sunsetTime = document.querySelector('.sunset-time')
 
+let fiveDayForecast = document.querySelector('.five-day-forecast')
 const dayOneHigh = document.querySelector('.day-one-high')
 const dayOneLow = document.querySelector('.day-one-low');
+
 const dayTwoHigh = document.querySelector('.day-two-high')
 const dayTwoLow = document.querySelector('.day-two-low')
 const dayThree = document.querySelector('.day-three')
 const dayFour = document.querySelector('.day-four')
 const dayFive = document.querySelector('.day-five')
 
-let currentData = {}
+let currentData = {units: 'metric'}
+
+let displayForecast = (data) => {
+    let units
+    if (currentData.units === 'imperial') {
+        units = ' °F'
+    } else {
+        units = ' °C'
+    }
+    let forecastParent = fiveDayForecast.children
+    for (let i = 0; i < forecastParent.length; i++) {
+        forecastParent[i].children[1].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
+        forecastParent[i].children[2].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
+    }
+}
 
 let onLoad = async () => {
     let cityCoords = await getCityCoords('santa cruz de tenerife');
@@ -31,9 +47,12 @@ let onLoad = async () => {
     setDate();
     setWeatherData(cityWeatherData)
     displayWeatherData(currentData)
-}
+    let forecastData = await fetchForecast(currentData)
+    displayForecast(forecastData);
+};
 
 let reLoad = async () => {
+    let forecastData = await fetchForecast(currentData)
     if (currentData.units === 'metric' || !currentData.units) {
         currentData.units = 'imperial'
         unitsBtn.textContent = 'Celcius'
@@ -45,12 +64,8 @@ let reLoad = async () => {
         currentData.units = 'metric'
         unitsBtn.textContent = 'Farenheit'
     }
-    console.log(currentData)
-    displayWeatherData(currentData)
-}
-let setDate = () => {
-    todaysDate.textContent = formatDate('day')
-    todaysTime.textContent = formatDate('time')
+    displayWeatherData()
+    displayForecast(forecastData)
 };
 
 let displaySunData = (data) => {
@@ -58,44 +73,31 @@ let displaySunData = (data) => {
     sunsetTime.textContent = data.sunset
 };
 
-let displayWeatherData = (currentCity) => {
+let displayWeatherData = () => {
     let units
     if (currentData.units === 'imperial') {
         units = ' °F'
     } else {
         units = ' °C'
     }
-    cityTitle.textContent = currentCity.title;
-    currentTemp.textContent = ` ${Math.round(currentCity.temp)} ${units}`
-    weatherDescription.textContent = currentCity.weather
-    feelsLike.textContent = `${Math.round(currentCity.feelsLike)} ${units}`;
-/*     dayOneHigh.textContent = Math.round(data.main.temp_max); */
+    cityTitle.textContent = currentData.title;
+    currentTemp.textContent = ` ${Math.round(currentData.temp)} ${units}`
+    weatherDescription.textContent = currentData.weather
+    feelsLike.textContent = `${Math.round(currentData.feelsLike)} ${units}`;
 };
 
 let setWeatherData = (data) => {
+    currentData.lon = data.coord.lon
+    currentData.lat = data.coord.lat
     currentData.title = data.name;
     currentData.temp = Math.round(data.main.temp);
     currentData.weather = data.weather[0].description;
     currentData.feelsLike = Math.round(data.main.feels_like);
-}
-
-let fetchWeatherData = async (cityName, units) => {
-    let url = CityWeatherUrl(cityName, units)
-    let response = await fetch(url)
-        return await response.json()
 };
 
-let getCityCoords = async (cityName) => {
-    let url = CityWeatherUrl(cityName);
-    let response = await fetch(url)
-    let cityCoords = await response.json()
-        return cityCoords.coord
+let setDate = () => {
+    todaysDate.textContent = formatDate('day')
+    todaysTime.textContent = formatDate('time')
 };
 
-let getCitySun = async (lat, lon) => {
-    let citySun = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=EST&date=today`)
-    const sunData = await citySun.json();
-        return sunData.results
-};
-
-export { onLoad, fetchWeatherData, displayWeatherData, reLoad }
+export { currentData, onLoad, fetchWeatherData, setWeatherData, displayWeatherData, reLoad }

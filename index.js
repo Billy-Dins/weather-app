@@ -1,5 +1,4 @@
-import { onLoad, fetchWeatherData, displayWeatherData, reLoad } from './src/functions/dom_manipulation';
-import { CityWeatherUrl } from './src/functions/api_manipulation';
+import { currentData, onLoad, fetchWeatherData, displayWeatherData, reLoad, setWeatherData, setForecast } from './src/functions/dom_manipulation';
 
 import styles from './src/styles.css'
 
@@ -9,8 +8,10 @@ const unitBtn = document.querySelector('.change-units');
 
 weatherBtn.addEventListener('click', async (event) => {
     event.preventDefault();
-    let data = await fetchWeatherData(cityInput.value);
-    displayWeatherData(data)
+    let data = await fetchWeatherData(cityInput.value, currentData.units);
+    setWeatherData(data)
+    displayWeatherData()
+    cityInput.value = ''
 })
 
 unitBtn.addEventListener('click', () => {
