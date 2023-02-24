@@ -16,14 +16,6 @@ const sunriseTime = document.querySelector('.sunrise-time');
 const sunsetTime = document.querySelector('.sunset-time')
 
 let fiveDayForecast = document.querySelector('.five-day-forecast')
-const dayOneHigh = document.querySelector('.day-one-high')
-const dayOneLow = document.querySelector('.day-one-low');
-
-const dayTwoHigh = document.querySelector('.day-two-high')
-const dayTwoLow = document.querySelector('.day-two-low')
-const dayThree = document.querySelector('.day-three')
-const dayFour = document.querySelector('.day-four')
-const dayFive = document.querySelector('.day-five')
 
 let currentData = {units: 'metric'}
 
@@ -74,19 +66,21 @@ let onLoad = async () => {
 
 let reLoad = async () => {
     let forecastData = await fetchForecast(currentData)
-    if (currentData.units === 'metric' || !currentData.units) {
+    if (currentData.units === 'imperial') {
+        currentData.units = 'metric'
+        unitsBtn.textContent = 'Farenheit'
+        let cityWeatherData = await fetchWeatherData(currentData.title, 'metric');
+        setWeatherData(cityWeatherData)
+    } else {
         currentData.units = 'imperial'
         unitsBtn.textContent = 'Celcius'
         let cityWeatherData = await fetchWeatherData(currentData.title, 'imperial')
+        console.log(cityWeatherData)
         setWeatherData(cityWeatherData)
-    } else {
-        let cityWeatherData = await fetchWeatherData(currentData.title, 'metric');
-        setWeatherData(cityWeatherData)
-        currentData.units = 'metric'
-        unitsBtn.textContent = 'Farenheit'
     }
+    let forecast = await fetchForecast(currentData);
     displayWeatherData()
-    displayForecast(forecastData)
+    displayForecast(forecast)
 };
 
 let displaySunData = (data) => {
