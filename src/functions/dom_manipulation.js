@@ -1,5 +1,5 @@
 import { fetchForecast, CityWeatherUrl, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
-import { formatDate } from "./format";
+import { formatDate, getTimeZone, getTodaysDate } from "./format";
 
 import { getDay, parseISO, parse } from 'date-fns'
 
@@ -41,7 +41,7 @@ let getDayOfWeek = (dayOfWeek) => {
     } else if (dayOfWeek == '5') {
         return 'Friday'
     } else if (dayOfWeek == '6') {
-        return 'Saturday'
+        return 'Saturday'   
     }
 }
 
@@ -55,18 +55,18 @@ let displayForecast = (data) => {
     let forecastParent = fiveDayForecast.children
     for (let i = 0; i < forecastParent.length; i++) {
         forecastParent[i].children[0].textContent = getDayOfWeek(getDay(parseISO(data.list[((i+1)*8) -4].dt_txt.split(' ')[0])))
-        forecastParent[i].children[1].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
-        forecastParent[i].children[2].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
+        forecastParent[i].children[2].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
+        forecastParent[i].children[1].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
     }
 }
 
 let onLoad = async () => {
+    let cityWeatherData = await fetchWeatherData('santa cruz de tenerife', 'metric');
+    setWeatherData(cityWeatherData)
     let cityCoords = await getCityCoords('santa cruz de tenerife');
     let sunData = await getCitySun(cityCoords.lat, cityCoords.lon);
     displaySunData(sunData)
-    let cityWeatherData = await fetchWeatherData('santa cruz de tenerife', 'metric');
     setDate();
-    setWeatherData(cityWeatherData)
     displayWeatherData(currentData)
     let forecastData = await fetchForecast(currentData)
     displayForecast(forecastData);
@@ -108,6 +108,8 @@ let displayWeatherData = () => {
 };
 
 let setWeatherData = (data) => {
+    console.log(data)
+    currentData.timezone = getTimeZone(data.timezone)
     currentData.lon = data.coord.lon
     currentData.lat = data.coord.lat
     currentData.title = data.name;
@@ -117,8 +119,8 @@ let setWeatherData = (data) => {
 };
 
 let setDate = () => {
-    todaysDate.textContent = formatDate('day')
-    todaysTime.textContent = formatDate('time')
+    todaysDate.textContent = formatDate('day', currentData.timezone)
+    todaysTime.textContent = formatDate('time', currentData.timezone)
 };
 
-export { currentData, onLoad, fetchWeatherData, setWeatherData, displayWeatherData, reLoad, fetchForecast, displayForecast }
+export { currentData, onLoad, fetchWeatherData, setWeatherData, displayWeatherData, reLoad, fetchForecast, displayForecast, setDate }
