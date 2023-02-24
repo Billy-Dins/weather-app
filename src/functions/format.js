@@ -1,7 +1,6 @@
 import { currentData } from "./dom_manipulation";
 
 let getTodaysDate = (timezone) => {
-    console.log(`timezone is ${timezone}`)
     return new Date().toLocaleString("en-US", { timeZone: `${timezone}` });
 };
 
@@ -46,7 +45,6 @@ let formatDate = (request) => {
 };
 
 let getTimeZone = (inSeconds) => {
-    console.log(`time in seconds from UTC is: ${inSeconds}`)
     if (inSeconds == '0') {
         return 'UTC'
     } else if (inSeconds == '3600') {

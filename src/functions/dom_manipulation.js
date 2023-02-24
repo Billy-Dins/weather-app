@@ -64,7 +64,7 @@ let onLoad = async () => {
     let cityWeatherData = await fetchWeatherData('santa cruz de tenerife', 'metric');
     setWeatherData(cityWeatherData)
     let cityCoords = await getCityCoords('santa cruz de tenerife');
-    let sunData = await getCitySun(cityCoords.lat, cityCoords.lon);
+    let sunData = await getCitySun(cityCoords.lat, cityCoords.lon, currentData.timezone);
     displaySunData(sunData)
     setDate();
     displayWeatherData(currentData)
@@ -108,7 +108,6 @@ let displayWeatherData = () => {
 };
 
 let setWeatherData = (data) => {
-    console.log(data)
     currentData.timezone = getTimeZone(data.timezone)
     currentData.lon = data.coord.lon
     currentData.lat = data.coord.lat

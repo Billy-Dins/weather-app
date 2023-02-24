@@ -8,8 +8,8 @@ let fetchForecastUrl = (data) => {
     return `https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=05f38c988f47ba62b87ed1de9b4136f4&units=${data.units}`
 }
 
-let getCitySun = async (lat, lon) => {
-    let citySun = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=EST&date=today`)
+let getCitySun = async (lat, lon, timezone) => {
+    let citySun = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=${timezone}&date=today`)
     const sunData = await citySun.json();
         return sunData.results
 };
