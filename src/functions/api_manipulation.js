@@ -27,7 +27,7 @@ let fetchForecast = async (data) => {
 }
 
 let getCityCoords = async (cityName) => {
-    let url = CityWeatherUrl(cityName);
+    let url = CityWeatherUrl(cityName, currentData.units);
     let response = await fetch(url)
     let cityCoords = await response.json()
         return cityCoords.coord

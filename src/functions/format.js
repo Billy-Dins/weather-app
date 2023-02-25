@@ -45,6 +45,7 @@ let formatDate = (request) => {
 };
 
 let getTimeZone = (inSeconds) => {
+    console.log(inSeconds)
     if (inSeconds == '0') {
         return 'UTC'
     } else if (inSeconds == '3600') {
@@ -62,17 +63,17 @@ let getTimeZone = (inSeconds) => {
     } else if (inSeconds == '25200') {
         return 'KRAT'
     } else if (inSeconds == '28800') {
-        return 'WST'
+        return 'Australia/Perth'
     } else if (inSeconds == '32400') {
-        return 'JST'
+        return 'Asia/Tokyo'
     } else if (inSeconds == '36000') {
-        return 'AEST'
+        return 'Pacific/Port_Moresby'
     } else if (inSeconds == '39600') {
-        return 'NCT'
+        return 'Australia/Sydney'
     } else if (inSeconds == '43200') {
-        return 'NZST'
+        return 'Pacific/Auckland'
     } else if (inSeconds == '46800') {
-        return 'NZDT'
+        return 'Pacific/Auckland'
     } else if (inSeconds == '-3600') {
         return 'EGT'
     } else if (inSeconds == '-7200') {

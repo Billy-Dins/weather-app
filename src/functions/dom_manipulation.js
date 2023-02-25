@@ -1,7 +1,7 @@
-import { fetchForecast, CityWeatherUrl, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
-import { formatDate, getTimeZone, getTodaysDate } from "./format";
+import { fetchForecast, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
+import { formatDate, getTimeZone } from "./format";
 
-import { getDay, parseISO, parse } from 'date-fns'
+import { getDay, parseISO } from 'date-fns'
 
 const cityTitle = document.querySelector('.city-title');
 const weatherDescription = document.querySelector('.weather-description');
@@ -10,6 +10,7 @@ const todaysTime = document.querySelector('.todays-time');
 const currentTemp = document.querySelector('.current-temperature');
 const weatherIcon = document.querySelector('.weather-icon');
 const unitsBtn = document.querySelector('.change-units')
+const cityInput = document.querySelector('.city-input');
 
 const feelsLike = document.querySelector('.feels-like-temp')
 const sunriseTime = document.querySelector('.sunrise-time');
@@ -52,6 +53,19 @@ let displayForecast = (data) => {
     }
 }
 
+let loadNewCity = async () => {
+    let data = await fetchWeatherData(cityInput.value, currentData.units);
+    setWeatherData(data)
+    displayWeatherData()
+    cityInput.value = ''
+    let forecastData = await fetchForecast(currentData)
+    let cityCoords = await getCityCoords(currentData.title);
+    let sunData = await getCitySun(cityCoords.lat, cityCoords.lon, currentData.timezone);
+    displaySunData(sunData)
+    displayForecast(forecastData);
+    setDate();
+}
+
 let onLoad = async () => {
     let cityWeatherData = await fetchWeatherData('santa cruz de tenerife', 'metric');
     setWeatherData(cityWeatherData)
@@ -65,7 +79,6 @@ let onLoad = async () => {
 };
 
 let reLoad = async () => {
-    let forecastData = await fetchForecast(currentData)
     if (currentData.units === 'imperial') {
         currentData.units = 'metric'
         unitsBtn.textContent = 'Farenheit'
@@ -75,7 +88,6 @@ let reLoad = async () => {
         currentData.units = 'imperial'
         unitsBtn.textContent = 'Celcius'
         let cityWeatherData = await fetchWeatherData(currentData.title, 'imperial')
-        console.log(cityWeatherData)
         setWeatherData(cityWeatherData)
     }
     let forecast = await fetchForecast(currentData);
@@ -116,4 +128,4 @@ let setDate = () => {
     todaysTime.textContent = formatDate('time', currentData.timezone)
 };
 
-export { currentData, onLoad, fetchWeatherData, setWeatherData, displayWeatherData, reLoad, fetchForecast, displayForecast, setDate }
+export { currentData, onLoad, loadNewCity, fetchWeatherData, setWeatherData, displayWeatherData, reLoad, fetchForecast, displayForecast, setDate, getCityCoords }
