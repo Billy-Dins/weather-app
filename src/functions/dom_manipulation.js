@@ -1,4 +1,4 @@
-import { fetchForecast, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
+import { getWeatherIcon, fetchForecast, fetchWeatherData, getCityCoords, getCitySun } from "./api_manipulation";
 import { formatDate, getTimeZone } from "./format";
 
 import { getDay, parseISO } from 'date-fns'
@@ -38,7 +38,7 @@ let getDayOfWeek = (dayOfWeek) => {
     }
 }
 
-let displayForecast = (data) => {
+let displayForecast = async (data) => {
     let units
     if (currentData.units === 'imperial') {
         units = ' °F'
@@ -47,6 +47,7 @@ let displayForecast = (data) => {
     }
     let forecastParent = fiveDayForecast.children
     for (let i = 0; i < forecastParent.length; i++) {
+        forecastParent[i].children[3].src = await getWeatherIcon(data.list[((i+1)*8) -4].weather[0].icon)
         forecastParent[i].children[0].textContent = getDayOfWeek(getDay(parseISO(data.list[((i+1)*8) -4].dt_txt.split(' ')[0])))
         forecastParent[i].children[2].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
         forecastParent[i].children[1].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
@@ -56,6 +57,8 @@ let displayForecast = (data) => {
 let loadNewCity = async () => {
     let data = await fetchWeatherData(cityInput.value, currentData.units);
     setWeatherData(data)
+    let weatherIcon = await getWeatherIcon(currentData.icon);
+    displayWeatherIcon(weatherIcon);
     displayWeatherData()
     cityInput.value = ''
     let forecastData = await fetchForecast(currentData)
@@ -66,9 +69,15 @@ let loadNewCity = async () => {
     setDate();
 }
 
+let displayWeatherIcon = (icon) => {
+    weatherIcon.src = icon
+}
+
 let onLoad = async () => {
     let cityWeatherData = await fetchWeatherData('santa cruz de tenerife', 'metric');
     setWeatherData(cityWeatherData)
+    let weatherIcon = await getWeatherIcon(currentData.icon);
+    displayWeatherIcon(weatherIcon);
     let cityCoords = await getCityCoords('santa cruz de tenerife');
     let sunData = await getCitySun(cityCoords.lat, cityCoords.lon, currentData.timezone);
     displaySunData(sunData)
@@ -81,12 +90,12 @@ let onLoad = async () => {
 let reLoad = async () => {
     if (currentData.units === 'imperial') {
         currentData.units = 'metric'
-        unitsBtn.textContent = 'Farenheit'
+        unitsBtn.textContent = 'Display °F'
         let cityWeatherData = await fetchWeatherData(currentData.title, 'metric');
         setWeatherData(cityWeatherData)
     } else {
         currentData.units = 'imperial'
-        unitsBtn.textContent = 'Celcius'
+        unitsBtn.textContent = 'Display °C'
         let cityWeatherData = await fetchWeatherData(currentData.title, 'imperial')
         setWeatherData(cityWeatherData)
     }
@@ -114,6 +123,7 @@ let displayWeatherData = () => {
 };
 
 let setWeatherData = (data) => {
+    currentData.icon = data.weather[0].icon
     currentData.timezone = getTimeZone(data.timezone)
     currentData.lon = data.coord.lon
     currentData.lat = data.coord.lat

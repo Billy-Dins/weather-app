@@ -14,6 +14,10 @@ let getCitySun = async (lat, lon, timezone) => {
         return sunData.results
 };
 
+let getWeatherIcon = async (iconCode) => {
+    return `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+}
+
 let fetchWeatherData = async (cityName, units) => {
     let url = CityWeatherUrl(cityName, units)
     let response = await fetch(url)
@@ -33,4 +37,4 @@ let getCityCoords = async (cityName) => {
         return cityCoords.coord
 };
 
-export { CityWeatherUrl, getCitySun, getCityCoords, fetchForecast, fetchWeatherData }
+export { CityWeatherUrl, getCitySun, getCityCoords, fetchForecast, fetchWeatherData, getWeatherIcon }

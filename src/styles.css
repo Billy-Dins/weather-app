@@ -14,6 +14,8 @@
 }
 
 .top-left {
+    display: flex;
+    flex-direction: column;
     padding: 25px;
     top: 0px;
     left: 0px;
@@ -26,16 +28,23 @@
     font-size: .7rem;
     font-family: 'Aboreto', cursive;
 }
+.todays-date, .todays-time {
+    font-size: .7rem;
+}
 .current-temperature {
     font-size: 2rem;
     font-family: 'Aboreto', cursive;
 }
 .change-units {
-    font-size: .6rem;
+    text-align: start;
+    font-size: .5rem;
     font-family: 'Aboreto', cursive;
     background: none;
     border: none;
     cursor: pointer;
+}
+.weather-icon {
+    width: 75px;
 }
 .city-input {
     padding: 0px 0px 3px 7px;
@@ -61,10 +70,12 @@
     top: 0px;
     right: 0px;
 }
+.top-right {
+}
 .forecast {
     position: fixed;
     width: 100%;
-    bottom: 10px;
+    bottom: 35px;
 }
 .five-day-forecast {
     padding: 10px;
@@ -91,4 +102,7 @@
 .day-low {
     font-family: 'Aboreto', cursive;
     font-size: .6rem;
+}
+.day-icon {
+    width: 50px;
 }

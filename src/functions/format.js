@@ -45,7 +45,6 @@ let formatDate = (request) => {
 };
 
 let getTimeZone = (inSeconds) => {
-    console.log(inSeconds)
     if (inSeconds == '0') {
         return 'UTC'
     } else if (inSeconds == '3600') {
