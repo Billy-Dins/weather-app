@@ -25,6 +25,7 @@
     font-family: 'Lobster', cursive;
 }
 .weather-description {
+    padding-bottom: 7px;
     font-size: .7rem;
     font-family: 'Aboreto', cursive;
 }
@@ -32,6 +33,7 @@
     font-size: .7rem;
 }
 .current-temperature {
+    padding-top: 15px;
     font-size: 2rem;
     font-family: 'Aboreto', cursive;
 }
@@ -70,7 +72,58 @@
     top: 0px;
     right: 0px;
 }
-.top-right {
+.top-right-container {
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.top-right-item-one {
+    display: grid;
+    grid-column: 2/3;
+    grid-row: 1/3;
+}
+.top-right-item-two {
+    display: grid;
+    grid-column: 2/3;
+    grid-row: 2/3
+}
+.top-right-item-three {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+.feels-like {
+    padding: 10px;
+}
+.sunrise {
+    padding: 10px;
+}
+.sunset {
+    padding: 10px;
+}
+.feels-like-title {
+    font-size: .7rem;
+    text-align: start;
+}
+.feels-like-temp {
+    text-align: start;
+}
+.feels-like-icon {
+    width: 25px;
+}
+.sunrise-title {
+    font-size: .7rem;
+    text-align: start;
+}
+.sunrise-icon {
+    width: 25px;
+}
+.sunset-title {
+    font-size: .7rem;
+    text-align: start;
+}
+.sunset-icon {
+    width: 25px;
 }
 .forecast {
     position: fixed;
