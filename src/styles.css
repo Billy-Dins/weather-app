@@ -108,6 +108,8 @@
     text-align: start;
 }
 .feels-like-icon {
+    background: url(../src/assets/thermometer.png);
+    background-size: cover;
     width: 25px;
 }
 .sunrise-title {
@@ -115,6 +117,8 @@
     text-align: start;
 }
 .sunrise-icon {
+    background: url(../src/assets/sunrise.png);
+    background-size: cover;
     width: 25px;
 }
 .sunset-title {
@@ -122,7 +126,9 @@
     text-align: start;
 }
 .sunset-icon {
+    background: url(../src/assets/sunset.png);
     width: 25px;
+    background-size: cover;
 }
 .forecast {
     position: fixed;
