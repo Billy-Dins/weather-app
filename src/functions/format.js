@@ -48,11 +48,11 @@ let getTimeZone = (inSeconds) => {
     if (inSeconds == '0') {
         return 'UTC'
     } else if (inSeconds == '3600') {
-        return 'CET'
+        return 'Africa/Lagos'
     } else if (inSeconds == '7200') {
-        return 'EET'
+        return 'Europe/Amsterdam'
     } else if (inSeconds == '10800') {
-        return 'EAT'
+        return 'Asia/Baghdad'
     } else if (inSeconds == '14400') {
         return 'GST'
     } else if (inSeconds == '18000') {
