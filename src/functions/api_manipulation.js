@@ -20,21 +20,34 @@ let getWeatherIcon = async (iconCode) => {
 
 let fetchWeatherData = async (cityName, units) => {
     let url = CityWeatherUrl(cityName, units)
-    let response = await fetch(url)
+    try {
+        let response = await fetch(url)
         return await response.json()
+    } catch (error) {
+        console.log(`Error at line 21... ${error}`)
+    }
 };
 
 let fetchForecast = async (data) => {
+    try {
     let url = fetchForecastUrl(data);
     let response = await fetch(url)
         return await response.json();
+    }
+    catch (error) {
+        console.log(`Error at line 21... ${error}`)
+    }
 }
 
 let getCityCoords = async (cityName) => {
+    try {
     let url = CityWeatherUrl(cityName, currentData.units);
     let response = await fetch(url)
     let cityCoords = await response.json()
         return cityCoords.coord
+    } catch (error) {
+        console.log(`Error at line 21... ${error}`)
+    }
 };
 
 export { CityWeatherUrl, getCitySun, getCityCoords, fetchForecast, fetchWeatherData, getWeatherIcon }

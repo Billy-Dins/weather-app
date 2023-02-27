@@ -50,17 +50,17 @@ let getTimeZone = (inSeconds) => {
     } else if (inSeconds == '3600') {
         return 'Africa/Lagos'
     } else if (inSeconds == '7200') {
-        return 'Europe/Amsterdam'
+        return 'Europe/Helsinki'
     } else if (inSeconds == '10800') {
         return 'Asia/Baghdad'
     } else if (inSeconds == '14400') {
-        return 'GST'
+        return 'Indian/Maldives'
     } else if (inSeconds == '18000') {
-        return 'MVT'
+        return 'Asia/Dacca'
     } else if (inSeconds == '21600') {
-        return 'BST'
+        return 'Asia/Jakarta'
     } else if (inSeconds == '25200') {
-        return 'KRAT'
+        return 'Antarctica/Davis'
     } else if (inSeconds == '28800') {
         return 'Australia/Perth'
     } else if (inSeconds == '32400') {
@@ -74,31 +74,29 @@ let getTimeZone = (inSeconds) => {
     } else if (inSeconds == '46800') {
         return 'Pacific/Auckland'
     } else if (inSeconds == '-3600') {
-        return 'EGT'
+        return 'Atlantic/Cape_Verde'
     } else if (inSeconds == '-7200') {
-        return 'WGST'
+        return 'Brazil/DeNoronha'
     } else if (inSeconds == '-10800') {
-        return 'ADT'
+        return 'America/Buenos_Aires'
     } else if (inSeconds == '-12600') {
-        return 'AST'
+        return 'America/Guadeloupe'
     } else if (inSeconds == '-14400') {
-        return 'CDT'
+        return 'America/Jamaica'
     } else if (inSeconds == '-18000') {
-        return 'EST'
+        return 'America/Boise'
     } else if (inSeconds == '-21600') {
-        return 'CST'
+        return 'America/Phoenix'
     } else if (inSeconds == '-25200') {
-        return 'MST'
+        return 'America/Anchorage'
     } else if (inSeconds == '-28800') {
-        return 'PST'
+        return 'Pacific/Gambier'
     } else if (inSeconds == '-32400') {
-        return 'AST'
+        return 'Pacific/Honolulu'
     } else if (inSeconds == '-36000') {
-        return 'HST'
+        return 'Pacific/Midway'
     } else if (inSeconds == '-39600') {
-        return 'U'
-    } else if (inSeconds == '-43200') {
-        return 'DST'
+        return 'Etc/GMT+12'
     }
 };
 

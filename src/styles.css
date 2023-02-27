@@ -127,6 +127,11 @@
     width: 25px;
     background-size: cover;
 }
+.error-message.hidden {
+    display: none;
+    max-width: 150px;
+}
+
 .forecast {
     position: fixed;
     width: 100%;

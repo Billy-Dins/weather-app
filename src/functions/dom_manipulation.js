@@ -11,6 +11,7 @@ const currentTemp = document.querySelector('.current-temperature');
 const weatherIcon = document.querySelector('.weather-icon');
 const unitsBtn = document.querySelector('.change-units')
 const cityInput = document.querySelector('.city-input');
+const errorMessage = document.querySelector('.error-message')
 
 const feelsLike = document.querySelector('.feels-like-temp')
 const sunriseTime = document.querySelector('.sunrise-time');
@@ -39,6 +40,7 @@ let getDayOfWeek = (dayOfWeek) => {
 }
 
 let displayForecast = async (data) => {
+    try {
     let units
     if (currentData.units === 'imperial') {
         units = ' °F'
@@ -51,11 +53,16 @@ let displayForecast = async (data) => {
         forecastParent[i].children[0].textContent = getDayOfWeek(getDay(parseISO(data.list[((i+1)*8) -4].dt_txt.split(' ')[0])))
         forecastParent[i].children[2].textContent = `${Math.round(data.list[((i+1)*8) -4].main.temp)} ${units}`;
         forecastParent[i].children[1].textContent = `${Math.round(data.list[i*8].main.temp)} ${units}`;
+    } 
+        errorMessage.classList.add('hidden')
+    } catch (error) {
+        errorMessage.classList.remove('hidden')
     }
 }
 
 let loadNewCity = async () => {
     let data = await fetchWeatherData(cityInput.value, currentData.units);
+    try {
     setWeatherData(data)
     let weatherIcon = await getWeatherIcon(currentData.icon);
     displayWeatherIcon(weatherIcon);
@@ -67,6 +74,10 @@ let loadNewCity = async () => {
     displaySunData(sunData)
     displayForecast(forecastData);
     setDate();
+        errorMessage.classList.add('hidden')
+    } catch (error) {
+        errorMessage.classList.remove('hidden')
+    }
 }
 
 let displayWeatherIcon = (icon) => {
