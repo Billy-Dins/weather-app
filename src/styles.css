@@ -3,7 +3,7 @@
     margin: 0;
 }
 .main-content {
-    color: white;
+    color: lightblue;
     background: url(./assets/thunder-field.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -32,6 +32,7 @@
     font-family: 'Lobster', cursive;
 }
 .weather-description {
+    color: coral;
     padding-bottom: 7px;
     font-size: .7rem;
     font-family: 'Aboreto', cursive;
@@ -45,6 +46,7 @@
     font-family: 'Aboreto', cursive;
 }
 .change-units {
+    color: coral;
     text-align: start;
     font-size: .5rem;
     font-family: 'Aboreto', cursive;
@@ -62,11 +64,7 @@
     border-bottom: 1px solid black;
 }
 .city-input::placeholder {
-    color: black;
-}
-.cityInput:focus {
-    outline: none;
-    color: pink;
+    color: lightblue;
 }
 .getWeatherBtn {
     background: none;
@@ -99,47 +97,24 @@
     grid-column: 1/2;
     grid-row: 1/3;
 }
-.feels-like {
+.sunrise, .unset, .feels-like {
     padding: 10px;
 }
-.sunrise {
-    padding: 10px;
-}
-.sunset {
-    padding: 10px;
-}
-.feels-like-title {
-    font-size: .7rem;
-    text-align: start;
-}
-.feels-like-temp {
-    text-align: start;
-}
-.feels-like-icon {
+.feels-like-icon, .sunrise-icon, .sunset-icon {
     background-size: cover;
     width: 25px;
 }
-.sunrise-title {
-    font-size: .7rem;
+.sunset-title, .sunrise-title, .feels-like-title, .sunset-time, .sunrise-time, .feels-like-temp {
+    font-size: .8rem;
     text-align: start;
 }
-.sunrise-icon {
-    background-size: cover;
-    width: 25px;
-}
-.sunset-title {
-    font-size: .7rem;
-    text-align: start;
-}
-.sunset-icon {
-    width: 25px;
-    background-size: cover;
+.sunset-time, .sunrise-time, .feels-like-temp {
+    color: coral;
 }
 .error-message.hidden {
     display: none;
     max-width: 150px;
 }
-
 .forecast {
     position: fixed;
     width: 100%;
@@ -174,8 +149,18 @@
 .day-icon {
     width: 50px;
 }
+.disclaimer {
+    font-size: .6rem;
+    font-weight: 900;
+    color: rgb(56, 56, 56);
+    position: absolute;
+    padding-left: 2%;
+    bottom: 0px;
+}
 @media only screen and (max-width: 400px) {
     .forecast {
+        
+        width: 150px;
         bottom: 0px;
     }
     .five-day-forecast {
@@ -203,5 +188,8 @@
     .day-icon {
         grid-row: 1/3;
         grid-column: 1/2;
+    }
+    .disclaimer {
+        font-size: .5rem;
     }
 }
