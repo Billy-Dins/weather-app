@@ -97,7 +97,7 @@
     grid-column: 1/2;
     grid-row: 1/3;
 }
-.sunrise, .unset, .feels-like {
+.sunrise, .sunset, .feels-like {
     padding: 10px;
 }
 .feels-like-icon, .sunrise-icon, .sunset-icon {
