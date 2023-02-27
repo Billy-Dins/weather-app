@@ -108,7 +108,6 @@
     text-align: start;
 }
 .feels-like-icon {
-    background: url(./assets/thermometer.png);
     background-size: cover;
     width: 25px;
 }
@@ -117,7 +116,6 @@
     text-align: start;
 }
 .sunrise-icon {
-    background: url(./assets/sunrise.png);
     background-size: cover;
     width: 25px;
 }
@@ -126,7 +124,6 @@
     text-align: start;
 }
 .sunset-icon {
-    background: url(./assets/sunset.png);
     width: 25px;
     background-size: cover;
 }

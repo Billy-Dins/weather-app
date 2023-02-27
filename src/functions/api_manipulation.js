@@ -15,7 +15,7 @@ let getCitySun = async (lat, lon, timezone) => {
 };
 
 let getWeatherIcon = async (iconCode) => {
-    return `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+    return `https://openweathermap.org/img/wn/${iconCode}@2x.png`
 }
 
 let fetchWeatherData = async (cityName, units) => {
