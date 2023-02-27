@@ -5,9 +5,11 @@ import styles from './src/styles.css'
 import thermometer from './src/assets/thermometer.png'
 import sunrise from './src/assets/sunrise.png'
 import sunset from './src/assets/sunset.png'
+import thunderField from './src/assets/thunder-field.jpg'
 
 const weatherBtn = document.querySelector('.getWeatherBtn');
 const unitBtn = document.querySelector('.change-units');
+
 
 onLoad()
 

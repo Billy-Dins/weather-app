@@ -3,7 +3,15 @@
     margin: 0;
 }
 .main-content {
-    background-color: rgb(41, 158, 173);
+    color: white;
+    background: url(./assets/thunder-field.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* IE */
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/thunder-field.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/thunder-field.jpg', sizingMethod='scale')";
     width: 100vw;
     height: 100vh;
 }
@@ -54,7 +62,7 @@
     border-bottom: 1px solid black;
 }
 .city-input::placeholder {
-    color: lightgray;
+    color: black;
 }
 .cityInput:focus {
     outline: none;
