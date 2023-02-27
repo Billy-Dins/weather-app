@@ -161,12 +161,14 @@
     .forecast {
         width: 150px;
         bottom: 0px;
+        right: 0px;
     }
     .five-day-forecast {
         flex-direction: column;
         padding-left: 5%;
     }
     .forecast-day {
+        color: lightblue;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
@@ -180,10 +182,12 @@
         grid-row: 1/2;
     }
     .day-high {
+        color: white;
         grid-column: 2/3;
         grid-row: 2/3
     }
     .day-low {
+        color: white;
         grid-column: 2/3;
         grid-row: 3/4;
     }
