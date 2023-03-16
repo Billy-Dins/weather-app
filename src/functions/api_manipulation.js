@@ -24,10 +24,11 @@ let fetchWeatherData = async (cityName, units) => {
         let response = await fetch(url)
         return await response.json()
     } catch (error) {
-        console.log(`Error at line 21... ${error}`)
+        console.log(`Error... ${error}`)
     }
 };
 
+// 5 day forecast
 let fetchForecast = async (data) => {
     try {
     let url = fetchForecastUrl(data);
@@ -35,7 +36,7 @@ let fetchForecast = async (data) => {
         return await response.json();
     }
     catch (error) {
-        console.log(`Error at line 21... ${error}`)
+        console.log(`Error... ${error}`)
     }
 }
 

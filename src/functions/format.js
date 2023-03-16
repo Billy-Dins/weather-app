@@ -4,6 +4,7 @@ let getTodaysDate = (timezone) => {
     return new Date().toLocaleString("en-US", { timeZone: `${timezone}` });
 };
 
+// Takes today's date and formats into a more readable string.
 let formatDate = (request) => {
     if (request === 'day') {
         let dateArray = []
@@ -44,6 +45,8 @@ let formatDate = (request) => {
     }
 };
 
+// returns the timezone to be read by getTodaysDate function with the returned
+// region for proper formatting.
 let getTimeZone = (inSeconds) => {
     if (inSeconds == '0') {
         return 'UTC'

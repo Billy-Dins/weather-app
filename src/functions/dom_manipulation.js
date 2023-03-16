@@ -38,7 +38,10 @@ let getDayOfWeek = (dayOfWeek) => {
         return 'Saturday'   
     }
 }
-
+// Loops through the number of forecast requests (base 5),
+// then attaches day, temp high/low & icon that correlates with weather.
+// Only 3 hour forecast is available for free so generally mid day is the warmest
+// and early morning is coldest, that is where data is retrieved.
 let displayForecast = async (data) => {
     try {
     let units
@@ -59,7 +62,7 @@ let displayForecast = async (data) => {
         errorMessage.classList.remove('hidden')
     }
 }
-
+// Takes input/requested city value and currentData object to that city data.
 let loadNewCity = async () => {
     let data = await fetchWeatherData(cityInput.value, currentData.units);
     try {
